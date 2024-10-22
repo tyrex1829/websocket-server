@@ -8,6 +8,8 @@ const server = http.createServer((req: any, res: any) => {
 
 const wss = new WebSocketServer({ server });
 
+let userCount = 0;
+
 wss.on("connection", (ws) => {
   ws.on("error", console.error);
 
@@ -18,6 +20,8 @@ wss.on("connection", (ws) => {
       }
     });
   });
+
+  console.log("User connected " + ++userCount);
 
   ws.send("Hello! Message from server!!");
 });
